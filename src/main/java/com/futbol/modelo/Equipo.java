@@ -1,6 +1,7 @@
 package com.futbol.modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Entity
@@ -14,13 +15,15 @@ public class Equipo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre no puede estar vacío")
     @Column(nullable = false)
     private String nombre;
 
+    @NotBlank(message = "La ciudad no puede estar vacía")
     @Column(nullable = false)
     private String ciudad;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "estadio_id")
     private Estadio estadio;
 }

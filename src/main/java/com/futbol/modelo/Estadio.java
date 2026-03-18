@@ -1,6 +1,8 @@
 package com.futbol.modelo;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 @Entity
@@ -14,11 +16,14 @@ public class Estadio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El nombre no puede estar vacío")
     @Column(nullable = false)
     private String nombre;
 
+    @NotBlank(message = "La ciudad no puede estar vacía")
     @Column(nullable = false)
     private String ciudad;
 
+    @Positive(message = "La capacidad debe ser un número positivo")
     private int capacidad;
 }
